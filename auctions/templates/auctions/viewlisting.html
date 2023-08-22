@@ -1,0 +1,227 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block title %}
+ Listing - {{product.id}}
+{% endblock %}
+
+{% block content  %}
+
+    {% if message %}
+        <div class="alert alert-{{msg_type}}">{{ message }}</div>
+    {% endif %}
+    
+    <main>
+
+          <section class="projects section-padding">
+            <div class="jumbotron text-center" style="padding: 3% 10%;">
+                <br> <br>
+                <h2 class="mb-3">{{product.title}}</h2> <br><hr>
+                  <br>
+                  <img src="{{ product.image.url }}" class="img-fluid projects-image" alt="image here">
+                  <p class="lead" style="text-align:justify">Description: {{product.description}}</p>
+                  <p class="lead" style="text-align:justify">Category: {{product.category}}</p>
+                  <p class="lead" style="text-align:justify">Current Bid Price : ${{product.starting_bid}}</p>
+                  <p class="lead" style="text-align:justify">Seller: {{product.seller}}</p>
+                  <p class="lead" style="text-align:justify">Created on: {{product.created_at}}</p>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="jumbotron text-center" style="padding: 3% 10%;">
+                {% if added %}
+                    <a href="{% url 'addtowatchlist' product.id %}" class="btn btn-danger btn-lg" name="remove">Remove from Watchlist</a>
+                {% else %}
+                    <a href="{% url 'addtowatchlist' product.id %}" class="btn btn-success btn-lg" name="add">Add to Watchlist</a>
+                {% endif %}
+                <br> <br>
+                {% if user.username != product.seller %}
+                   
+                     <!-- new form here -->
+            <div class="col-lg-6" style="margin: auto; margin-bottom: 50px">
+                <div
+                  class="box-element"
+                  id="form-wrapper"
+                  style="background-color: rgb(248, 249, 243); padding: 25px"
+                >
+              
+                <p class="lead" style="text-align:justify"><strong>Place your Bid: </strong></p>
+        
+                  <form action="{% url 'viewlisting' product.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control" type="text"  name="newbid" placeholder="Your Bid" >
+                    </div>
+                    <br />
+                    <input
+                      style="width: 100%"
+                    
+                      class="btn btn-primary"
+                      type="submit"
+                      value="Submit"
+                    />
+                    
+                  </form>
+                </div>
+                
+                
+              </div>
+            <!-- end new form -->
+            
+                {% endif %}
+                
+    
+                <br> <br> <br>
+    
+                <!-- Displaying comments-->
+                    {% if comments %}
+                    <div class="jumbotron text-center">
+    
+                    <!-- Title -->
+                    <h2 class="card-title h2">Comment{{comments.count|pluralize}}</h2>
+                        
+                        {% for comment in comments %}
+                            <br>
+                            <!-- Grid row -->
+                            <div class="card text-left">
+                            <h5 class="card-header h5">{{comment.user}}</h5>
+                            <div class="card-body">
+                                <!-- <h5 class="card-title">Rating :</h5> -->
+                                <p class="lead">{{comment.text}}</p>
+                                <p class="card-text">{{comment.timestamp}}</p>
+                            </div>
+                            </div>
+                        {% endfor %}
+    
+                    {% else %}
+                        <div class="text-center">
+                            <!-- Text -->
+                            <br> <br> 
+                            <p class="lead">No comments on this product.</p> 
+                        </div>
+                    {% endif %}
+                </div>
+                <br>
+                <!-- End displaying comments -->
+                
+                {% if user.username != product.seller %}
+                    <!-- Display comment form -->
+                    
+                                 <!-- new form here -->
+            <div class="col-lg-6" style="margin: auto; margin-bottom: 50px">
+                <div
+                  class="box-element"
+                  id="form-wrapper"
+                  style="background-color: rgb(248, 249, 243); padding: 25px"
+                >
+              
+                <h2 class="card-title h2">Add a comment</h2>
+        
+                <form action="{% url 'addcomment' product.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea class="form-control" name="comment" rows="4" placeholder="Your Comment"></textarea>
+                    </div>
+                    <br />
+                    <input
+                      style="width: 100%"
+                    
+                      class="btn btn-primary"
+                      type="submit"
+                      value="Submit"
+                    />
+                    
+                  </form>
+                </div>
+                
+                
+              </div>
+            <!-- end new form -->
+                        
+                    </div>
+                    <!-- End add comments -->
+                {% endif %}
+    
+                
+    
+                {% if user.username == product.seller %}
+                <div class="jumbotron text-center" style="margin: 0 auto;">
+                    <a href="{% url 'closebid' product.id %}"  class="btn btn-info btn-lg"> Close Bid </a>
+                </div>
+                    
+                {% endif %}
+            
+    
+            </div>
+        {% else %}
+            <div style="padding: 10px; border: 7px dashed green; margin: 0 auto; width: 80%; text-align: center;">
+                <a href="{% url 'register' %}">Sign up</a> or <a href="{% url 'login' %}">login to place a bid or comment on this product.</a> 
+            </div>
+                <!-- Displaying comments-->
+                {% if comments %}
+                <div class="jumbotron text-center">
+    
+                <!-- Title -->
+                <h2 class="card-title h2">Comment{{comments.count|pluralize}}</h2>
+                
+                    {% for comment in comments %}
+                        <br>
+                        <!-- Grid row -->
+                        <div class="card text-left">
+                        <h5 class="card-header h5">{{comment.user}}</h5>
+                        <div class="card-body">
+                            <!-- <h5 class="card-title">Rating :</h5> -->
+                            <p class="lead">{{comment.text}}</p>
+                            <p class="card-text">{{comment.timestamp}}</p>
+                        </div>
+                        </div>
+                    {% endfor %}
+    
+                {% else %}
+                    <div class="text-center">
+                        <!-- Text -->
+                        <br> <br> 
+                        <p class="lead"> No comments on this product.</p> 
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+          
+           
+        </section>
+        {% if categories %}
+        <div class="container">
+            <h2 class="mb-3" style="text-align: center ;">Other product{{categories.count|pluralize}} in this category</h2>
+            <div class="row" style="align-items: center; justify-content: center;">
+
+               
+               {% for listing in categories %}
+               <div class="col-lg-4 col-12">
+                <div class="projects-thumb projects-thumb-small">
+                    <a href="{% url 'viewlisting' listing.id %}">
+                        <img src="{{ listing.image.url }}" class="img-fluid projects-image" alt="site image" style="height: 450px">
+                        
+                        <div class="projects-info">
+                            <div class="projects-title-wrap">
+                                <small class="projects-small-title">{{listing.description| safe | slice:":50"}}</small>
+                                <h2 class="projects-title">{{listing.title}}</h2>
+                                <a href="{% url 'category' listing.category %}"><h6 class="text-white mb-0">Category: {{listing.category}}</h6></a>
+                                <p class="text-white mb-0">Seller: {{listing.seller}} <br> </p>
+                            </div>
+                            
+                                <div class="projects-btn-wrap mt-4">
+                                    <span class="custom-btn btn">
+                                        ${{listing.starting_bid}}
+                                    </span>
+                                </div>
+                            
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+               {% endfor %}
+
+            </div>
+        </div>
+       {% endif %}
+    </main>
+{% endblock %}

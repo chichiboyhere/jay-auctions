@@ -1,0 +1,112 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .box-element {
+      box-shadow: hsl(0, 0%, 80%) 0 0 16px;
+      background-color: #ffffff;
+      border-radius: 4px;
+      padding: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .col-lg-6 {
+        width: 95vw;
+      }
+      .box-element {
+        width: 100%;
+      }
+    }
+
+    .favicon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 55px;
+      margin-top: 20px;
+    }
+
+    .favicon img {
+      max-width: 80px;
+    }
+  </style>
+        
+
+        <!-- Jumbotron -->
+        <div class="jumbotron text-center lighten-4">
+         <br><br>
+            
+            <div class="col-lg-6" style="margin: auto; margin-bottom: 50px">
+                <div
+                  class="box-element"
+                  id="form-wrapper"
+                  style="background-color: rgb(248, 249, 243); padding: 25px"
+                >
+                {% if message %}
+                <div class="alert alert-{{msg_type}}">{{ message }}</div>
+                {% endif %}
+                  <h1 style="text-align: center; padding: 20px">Create Listing</h1>
+        
+                  <form
+                    id="form"
+                    action="{% url 'createlisting' %}"
+                    method="post"
+                    enctype="multipart/form-data"
+                    style="padding-bottom: 15px"
+                  >
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <input
+                        autofocus
+                        class="form-control"
+                        type="text"
+                        name="title"
+                        placeholder="Title"
+                      />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <textarea class="form-control" name="description" rows="4" placeholder="Description"></textarea>
+                      </div>
+                      <br />
+                    <div class="form-group">
+                        <select class="form-control" name="category" placeholder="Category" required>
+                            <option value="">Choose a Category</option>
+                            <option value="accessories">Accessories</option>
+                            <option value="books">Books</option>
+                            <option value="stationeries">Stationeries</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="jewellery">Jewellery</option>
+                            <option value="mobile phones">Mobile Phones</option>
+                            <option value="tools">Tools</option>
+                            <option value="toys">Toys</option>
+                            <option value="vehicles">Vehicles</option>
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="starting_bid" placeholder="Starting Bid">
+                      </div>
+                      <br />
+                      <input type="file"  name="image">
+
+                      <br><br>
+                    <input
+                      style="width: 100%"
+                    
+                      class="btn btn-warning"
+                      type="submit"
+                      value="Create"
+                    />
+                  </form>
+                </div>
+                
+                
+              </div>
+            
+        </div>
+        <!-- End Jumbotron -->
+
+{% endblock %}

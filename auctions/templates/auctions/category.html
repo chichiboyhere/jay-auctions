@@ -1,0 +1,56 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+{% block content %}
+<br>
+    {% if message %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+
+    <!-- Jumbotron -->
+    <div class="jumbotron text-center">
+        <!-- Title -->
+        <h2 class="card-title h2" style="color:blue; font-weight: 600;">{{name|capfirst}} section</h2>
+        
+        <br><hr>
+        <!-- Grid row -->
+        <div class="row d-flex justify-content-center">
+            <!-- Grid column -->
+            <div class="col-xl-7 pb-2">
+                {% if not listings %}
+                    <br>
+                    <img src="{% static 'auctions/img/notavailable.png' %}" alt="indeximage" style="height: 350px;" class="embed-responsive">
+                    <br> <br> <br>
+                    <div>No Listings Found</div>
+                {% else %}
+                    {% for listing in listings %}
+                        <br>
+                        <!-- Card -->
+                        <div class="card card-cascade" >
+                            <!-- Card image -->
+                            <div class="view view-cascade overlay " >
+                                <img  src="{{ listing.image.url }}" class="img-responsive" alt="image here" width="80%">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade text-center">
+                                <h4 class="card-title"><strong>{{listing.title}}</strong></h4>
+                                <h6 class="font-weight-bold indigo-text py-2">{{listing.category}}</h6>
+                                <p class="">{{listing.description}} <br> </p>
+                                <p class="font-weight-bold">${{listing.starting_bid}} <br> </p>
+                                <a href="{% url 'viewlisting' listing.id %}" class="btn btn-primary">Learn More</a>
+                            </div>
+                            <!-- Card footer -->
+                            <div class="card-footer text-muted text-center">
+                                {{listing.created_at}}
+                            </div>
+                        </div>
+                        <!-- Card -->
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron -->
+{% endblock %}

@@ -1,0 +1,283 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block title %}
+    Jay-Auctions - Home Page
+{% endblock %}
+{% block content %}
+
+<section class="hero">
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+          
+            <div id="carouselExampleCaptions" class="carousel carousel-fade hero-carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="container position-relative h-100">
+                            <div class="carousel-caption d-flex flex-column justify-content-center">
+                                <small class="small-title">Got something to sell?</small>
+
+                                <h1>Create <span class="text-warning">a listing,</span> attract great bids</h1>
+
+                                <div class="d-flex align-items-center mt-4">
+                                    <a class="custom-btn btn custom-link" href="{% url 'login' %}">Get Started</a>
+
+                                    <a class="popup-youtube custom-icon d-flex ms-4" href="#">
+                                        <i class="bi-play play-icon d-flex m-auto text-white"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-image-wrap">
+                            <img src="{% static 'auctions/images/slide/auction.jpg' %}" class="img-fluid carousel-image" alt="">
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="container position-relative h-100">
+                            <div class="carousel-caption d-flex flex-column justify-content-center">
+                                <small class="small-title">Like a listing?</small>
+
+                                <h1>Place your bid on it <span class="text-warning">before it's gone</span></h1>
+
+                                <div class="d-flex align-items-center mt-4">
+                                    <a class="custom-btn btn custom-link" href="{% url 'login' %}">Login to get started</a>
+
+                                    <a class="popup-youtube custom-icon d-flex ms-4" href="https://www.youtube.com/watch?v=VStvZjykQ00">
+                                        <i class="bi-play play-icon d-flex m-auto text-white"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-image-wrap">
+                            <img src="{% static 'auctions/images/slide/auctioning.jpg' %}" class="img-fluid carousel-image" alt="">
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="about section-padding" id="section_1">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                <div class="about-image-wrap h-100">
+                    <img src="{% static 'auctions/images/ibiyeomi.jpg' %}" class="img-fluid about-image" alt="">
+
+                    <div class="about-image-info">
+                        <h4 class="text-white">David Ibiyeomi</h4>
+
+                        <p class="text-white mb-0">MD/CEO</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-12 d-flex flex-column">
+                <div class="about-thumb bg-white shadow-lg">
+                    
+                    <div class="about-info">
+                        <small class="small-title">About </small>
+
+                        <h2 class="mb-3">Product Auctioning</h2>
+
+                        <h5 class="mb-3">Connecting sellers with buyers</h5>
+
+                        <p> 
+                            Jays Auction is an online market place that brings prospective sellers and buyers together. You can list items for sale ranging from art works and artifacts, to household items, clothes and jewellery, electronics and gadgets and so on. Potential buyers then place a bid for the listed item. The seller can close the bid at anytime he/she deems fit. Whoever emerges as the highest bidder on a given item as at the time the bid is closed is then announced as the winner of the bid and they can pay for the item to claim it.
+                        </p>
+
+                        <p>
+                        What are you waiting for? <a href="{% url 'register' %}">Sign up</a> or <a href="{% url 'login' %}">login</a> to start selling or buying that item of choice.
+                       </p>
+                    </div>
+                </div>
+
+                <div class="row h-100">
+                    <div class="col-lg-6 col-6">
+                        <div class="about-thumb d-flex flex-column justify-content-center bg-danger mb-lg-0 h-100">
+                            
+                            <div class="about-info">
+                                <h5 class="text-white mb-4">Got stuff to auction?</h5>
+
+                                <a class="custom-btn btn custom-bg-primary" href="{% url 'register' %}">Join us</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-6">
+                        <div class="about-thumb d-flex flex-column justify-content-center bg-warning mb-lg-0 h-100">
+                            
+                            <div class="about-info">
+                                <h5 class="text-white mb-4">Are you looking to buy?</h5>
+
+                                <p class="text-white mb-0">Take a look at the active listings below</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- 
+<section class="services section-padding" id="section_3">
+  
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-10 col-12 text-center mx-auto mb-5">
+                <small class="small-title">Services </small>
+
+                <h2>How can we help you?</h2>
+
+            </div>
+
+            <div class="col-lg-6 col-12">
+                <nav>
+                    <div class="nav nav-tabs flex-column align-items-baseline" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-business-tab" data-bs-toggle="tab" data-bs-target="#nav-business" type="button" role="tab" aria-controls="nav-business" aria-selected="true">
+                            <h3>Business Consulting</h3>
+
+                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore</span>
+                        </button>
+
+                        <button class="nav-link" id="nav-strategy-tab" data-bs-toggle="tab" data-bs-target="#nav-strategy" type="button" role="tab" aria-controls="nav-strategy" aria-selected="false">
+                            <h3>Strategy Planning</h3>
+                            
+                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore</span>
+                        </button>
+
+                        <button class="nav-link" id="nav-video-tab" data-bs-toggle="tab" data-bs-target="#nav-video" type="button" role="tab" aria-controls="nav-video" aria-selected="false">
+                            <h3>Video Content</h3>
+                            
+                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore</span>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="col-lg-6 col-12">
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-business" role="tabpanel" aria-labelledby="nav-intro-tab">
+                        <img src="{% static 'auctions/images/services/young-entrepreneurs-mature-investor-watching-presentation-discussing-project.jpg' %}" class="img-fluid" alt="">
+
+                        <h5 class="mt-4 mb-2">Introduction to Business Consulting</h5>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore</p>
+
+                        <ul>
+                            <li>Helping small businesses</li>
+
+                            <li>Lorem ipsum dolor sit amet</li>
+
+                            <li>Business Strategy and Management</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade show" id="nav-strategy" role="tabpanel" aria-labelledby="nav-strategy-tab">
+                        <img src="{% static 'auctions/images/services/startup-leader-drawing-flowchart-board-discussing-project.jpg' %}" class="img-fluid" alt="">
+
+                        <h5 class="mt-4 mb-2">Strategy Planning</h5>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-12">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor dolore</p>
+                            </div>
+
+                            <div class="col-lg-6 col-12">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor dolore</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show" id="nav-video" role="tabpanel" aria-labelledby="nav-video-tab">
+                        <img src="{% static 'auctions/images/services/portrait-smiling-african-american-young-woman-holding-movie-production-blackboard.jpg' %}" class="img-fluid" alt="">
+
+                        <h5 class="mt-4 mb-2">Video Content</h5>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore</p>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section> -->
+
+<section class="projects section-padding pb-0" id="section_4">
+  <div class="container">
+      <div class="row">
+
+          <div class="col-lg-10 col-12 text-center mx-auto mb-5">
+              <h2>Active Listings</h2>
+          </div>
+
+          <!-- added col -->
+
+          {% if not posts  %}
+          <div class="col-xl-7 pb-2">
+          
+              <br>
+              <img src="{% static 'auctions/img/saleswoman.jpg' %}" alt="index image" style="width: 60%;" class="embed-responsive">
+              <br> <br> <br>
+              <h3>No active listings available</h3>
+          </div>
+
+        {% else %}
+        {% for post in posts %}
+        
+       
+        <div class="col-lg-4 col-12">
+            
+          <div class="projects-thumb projects-thumb-small">
+              <a href="{% url 'viewlisting' post.id %}">
+                  <img src="{{ post.image.url }}" class="img-fluid projects-image" alt="" style="height: 450px;">
+                  
+                  <div class="projects-info">
+                      <div class="projects-title-wrap">
+                          <small class="projects-small-title">{{post.description| safe | slice:":50"}}</small>
+                          <h2 class="projects-title">{{post.title}}</h2>
+                          <a href="{% url 'category' post.category %}"><h6 class="text-white mb-0">Category: {{post.category}}</h6></a>
+                          <p class="text-white mb-0">Seller: {{post.seller}} <br> </p>
+                      </div>
+                      
+                          <div class="projects-btn-wrap mt-4">
+                              <span class="custom-btn btn">
+                                  ${{post.starting_bid}}
+                              </span>
+                          </div>
+                      
+                  </div>
+              </a>
+          </div>
+      </div>
+       
+    {% endfor %}
+    {% endif %}
+        
+      </div>
+  </div>
+  {% include "auctions/pagination.html" with page=posts %}
+</section>
+                   
+{% endblock %}
