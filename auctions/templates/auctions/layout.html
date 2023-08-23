@@ -21,6 +21,8 @@
 
         <link href="{% static 'auctions/css/bootstrap.min.css' %}" rel="stylesheet">
 
+        <link rel="shortcut icon" href="{% static 'auctions/images/favicon.png' %}" type="image/x-icon">
+
         <link href="{% static 'auctions/css/bootstrap-icons.css' %}" rel="stylesheet">
 
         <link href="{% static 'auctions/css/magnific-popup.css' %}" rel="stylesheet">
@@ -99,9 +101,11 @@
                         {% if user.is_authenticated %}
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Listing
+                              Listings
                             </a>
                             <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{% url 'index' %}">Active Listings</a></li>
+                              <li><hr class="dropdown-divider"></li>
                               <li><a class="dropdown-item" href="{% url 'createlisting' %}">Create Listing</a></li>
                               <li><hr class="dropdown-divider"></li>
                               <li><a class="dropdown-item" href="{% url 'closedlisting' %}">Closed Listings</a></li>
